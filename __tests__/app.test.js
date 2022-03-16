@@ -65,6 +65,13 @@ it('get a car by id', async() => {
   expect(res.body).toEqual({ ...expected })
 });
 
+it('delete a car by id', async() => {
+  const expected = await Car.getById(1);
+  const res = await request(app)
+    .delete(`/api/v1/cars/${expected.id}`);
+
+    expect(res.body).toEqual(expected)
+});
 });
 
 
