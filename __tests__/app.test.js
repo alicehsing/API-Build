@@ -77,12 +77,20 @@ it('delete a car by id', async() => {
     expect(res.body).toEqual(expected)
 });
 
-// it('updates a car by id', async() => {
-//   const expected = {
-//     id: expect.any(String),
-//     name: 
-//   }
-// })
+it('updates a car by id', async() => {
+  const expected = {
+    id: expect.any(String),
+    make: 'Mercedes',
+    type: 'Wagon',
+    model: 'G-Class',
+    yearReleased: 2021
+  }
+  const res = await request(app)
+    .patch('/api/v1/cars/1')
+    .send({ type: 'Wagon' });
+
+  expect(res.body).toEqual(expected);
+})
 });
 
 
