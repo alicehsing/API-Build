@@ -57,6 +57,14 @@ it('should be able to list an array of cars', async() => {
   ])
 })
 
+it('get a car by id', async() => {
+  const expected = await Car.getById(1)
+  const res = await request(app)
+    .get(`/api/v1/cars/${expected.id}`);
+
+  expect(res.body).toEqual({ ...expected })
+});
+
 });
 
 
