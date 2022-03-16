@@ -8,5 +8,13 @@ CREATE TABLE cars (
     make TEXT NOT NULL,
     type TEXT NOT NULL,
     model TEXT NOT NULL,
-    year INT NOT NULL
+    year_release INT NOT NULL
 );
+
+INSERT INTO cars (
+    make, type, model, year_release
+)
+
+VALUES
+('Mercedes', 'SUV', 'G-Class', 2021),
+('Ford', 'coupe', 'Mustang GT', 2017);

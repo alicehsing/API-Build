@@ -12,8 +12,19 @@ describe('API-Build routes', () => {
     pool.end();
   });
 
-it()
+it('should create a car', async () => {
+  const res = await request(app)
+  .post('/api/v1/cars')
+  .send({ make: 'Audi', type: 'convertible', model: 'Cabriolet', yearReleased: 2015});
 
+  expect(res.body).toEqual({
+    id: expect.any(String),
+    make: 'Audi', 
+    type: 'convertible', 
+    model: 'Cabriolet', 
+    yearReleased: 2015
+  });
+})
 
 });
 
