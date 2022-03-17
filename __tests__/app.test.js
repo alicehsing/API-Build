@@ -14,9 +14,15 @@ describe('API-Build routes', () => {
   });
 
 it('creates a car', async () => {
+  const expected = {
+    make: 'Audi', 
+    type: 'convertible', 
+    model: 'Cabriolet', 
+    yearReleased: 2015
+  }
   const res = await request(app)
   .post('/api/v1/cars')
-  .send({ make: 'Audi', type: 'convertible', model: 'Cabriolet', yearReleased: 2015 });
+  .send(expected);
 
   expect(res.body).toEqual({
     id: expect.any(String),
@@ -28,33 +34,11 @@ it('creates a car', async () => {
 })
 
 it('should list an array of cars', async() => {
-  await Car.insert({ make: 'Audi', type: 'convertible', model: 'Cabriolet', yearReleased: 2015 });
+  const expected = await Car.getAll();
   const res = await request(app)
   .get('/api/v1/cars');
 
-  expect(res.body).toEqual([
-    {
-      id: expect.any(String),
-      make: "Mercedes",
-      type: "SUV",
-      model: "G-Class",
-      yearReleased: 2021,
-    },
-    {
-      id: expect.any(String),
-      make: "Ford",
-      type: "coupe",
-      model: "Mustang GT",
-      yearReleased: 2017,
-    },
-    {
-      id: expect.any(String),
-      make: 'Audi', 
-      type: 'convertible', 
-      model: 'Cabriolet', 
-      yearReleased: 2015
-    }, 
-  ])
+  expect(res.body).toEqual(expected)
 })
 
 it('gets a car by id', async() => {
