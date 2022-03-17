@@ -81,13 +81,13 @@ it('updates a car by id', async() => {
   const expected = {
     id: expect.any(String),
     make: 'Mercedes',
-    type: 'Wagon',
+    type: 'wagon',
     model: 'G-Class',
     yearReleased: 2021
   }
   const res = await request(app)
     .patch('/api/v1/cars/1')
-    .send({ type: 'Wagon' });
+    .send({ type: 'wagon' });
 
   expect(res.body).toEqual(expected);
 })
